@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Finder</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 30px; }
+    input { padding: 10px; width: 300px; font-size: 18px; }
+    button { padding: 10px 15px; font-size: 18px; margin-left: 10px; cursor: pointer; }
+    .card { background: white; padding: 15px; margin-top: 10px; border-radius: 8px; box-shadow: 0 0 5px #ccc; }
+    h2 { margin: 0; color: #333; }
+  </style>
+</head>
+<body>
+
+  <h1>University Finder</h1>
+  <input type="text" id="countryInput" placeholder="Enter country name (e.g. India, USA)">
+  <button onclick="getUniversities()">Search</button>
+
+  <div id="results"></div>
+
+  <script>
+    function getUniversities() {
+      const country = document.getElementById("countryInput").value.trim();
+      const resultDiv = document.getElementById("results");
+
+      if (!country) {
+        resultDiv.innerHTML = "<p>Please enter a country name.</p>";
+        return;
+      }
+
+      fetch(`http://universities.hipolabs.com/search?country=${country}`)
+        .then(response => response.json())
+        .then(data => {
+          resultDiv.innerHTML = ""; // Clear previous results
+
+          if (data.length === 0) {
+            resultDiv.innerHTML = "<p>No universities found.</p>";
+            return;
+          }
+
+          data.forEach(uni => {
+            resultDiv.innerHTML += `
+              <div class="card">
+                <h2>${uni.name}</h2>
+                <p><strong>State:</strong> ${uni["state-province"] ?? "Not Available"}</p>
+                <p><strong>Website:</strong> <a href="${uni.web_pages[0]}" target="_blank">${uni.web_pages[0]}</a></p>
+              </div>
+            `;
+          });
+        })
+        .catch(error => {
+          resultDiv.innerHTML = "<p>Something went wrong. Try again.</p>";
+          console.error(error);
+        });
+    }
+  </script>
+
+</body>
+</html>

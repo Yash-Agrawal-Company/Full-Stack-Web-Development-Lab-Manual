@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Week 8 jQuery Tasks</title>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 20px;}
+    .faq-item { width: 60%; margin: auto; margin-bottom: 10px; cursor: pointer; }
+    .answer { display: none; background: #f1f1f1; padding: 10px; border-radius: 5px; }
+
+    #loginBox {
+      width: 300px; margin: auto; padding: 20px;
+      display: none; border: 1px solid #000; border-radius: 10px;
+    }
+    button { margin-top: 10px; padding: 8px 20px; cursor: pointer; }
+  </style>
+</head>
+
+<body>
+
+  <h2>FAQ Section (slideToggle)</h2>
+
+  <div class="faq-item">
+    <h3 class="question">What is jQuery?</h3>
+    <p class="answer">jQuery is a fast JavaScript library for DOM manipulation.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3 class="question">Why use jQuery?</h3>
+    <p class="answer">It makes animations, events, and AJAX easier.</p>
+  </div>
+
+  <hr><br>
+
+  <h2>Dynamic CSS Styling</h2>
+  <button id="styleBtn">Apply Style</button>
+
+  <hr><br>
+
+  <h2>Login Form (fadeIn & fadeOut)</h2>
+  <button id="showLogin">Show Login</button>
+  <button id="hideLogin">Hide Login</button>
+
+  <div id="loginBox">
+    <h3>Login</h3>
+    <input type="text" placeholder="Username"><br><br>
+    <input type="password" placeholder="Password"><br><br>
+    <button>Submit</button>
+  </div>
+
+  <script>
+    // FAQ Toggle
+    $(".question").click(function () {
+      $(this).next(".answer").slideToggle(300);
+    });
+
+    // Dynamic CSS
+    $("#styleBtn").click(function () {
+      $("h2").css({
+        color: "blue",
+        fontSize: "28px",
+        borderBottom: "2px solid black"
+      });
+    });
+
+    // Login fade effects
+    $("#showLogin").click(function () {
+      $("#loginBox").fadeIn(500);
+    });
+
+    $("#hideLogin").click(function () {
+      $("#loginBox").fadeOut(500);
+    });
+  </script>
+
+</body>
+</html>

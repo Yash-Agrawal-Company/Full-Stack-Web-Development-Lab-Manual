@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Week 9 To-Do + Chessboard</title>
+<style>
+  body{font-family:Arial;text-align:center;margin-top:20px;}
+
+  /* To-Do List Styles */
+  #todoContainer{width:420px;margin:auto;}
+  ul{padding:0;}
+  li{
+    list-style:none;
+    margin:8px 0;
+    padding:8px;
+    background:#e8e8e8;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:6px;
+    font-size:18px;
+  }
+  button{margin-left:6px;cursor:pointer;padding:3px 8px;font-size:16px;}
+
+  /* Chessboard Styles */
+  #board{
+    width:400px;
+    height:400px;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:repeat(8,1fr);
+    border:2px solid black;
+  }
+  .box{width:50px;height:50px;}
+</style>
+</head>
+
+<body>
+
+<h2>📝 Feature-Rich To-Do List</h2>
+<input id="taskInput" placeholder="Enter task">
+<button id="addBtn">Add</button>
+
+<div id="todoContainer">
+  <ul id="taskList"></ul>
+</div>
+
+<script>
+const input = document.getElementById("taskInput");
+const list = document.getElementById("taskList");
+
+document.getElementById("addBtn").addEventListener("click", () => {
+  if (!input.value.trim()) return;
+
+  const li = document.createElement("li");
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.onchange = () => {
+    text.style.textDecoration = checkbox.checked ? "line-through" : "none";
+  };
+
+  const text = document.createElement("span");
+  text.innerText = input.value;
+
+  const delBtn = document.createElement("button");
+  delBtn.innerText = "❌";
+  delBtn.onclick = () => li.remove();
+
+  const upBtn = document.createElement("button");
+  upBtn.innerText = "⬆";
+  upBtn.onclick = () => {
+    if (li.previousElementSibling) list.insertBefore(li, li.previousElementSibling);
+  };
+
+  const downBtn = document.createElement("button");
+  downBtn.innerText = "⬇";
+  downBtn.onclick = () => {
+    if (li.nextElementSibling) list.insertBefore(li.nextElementSibling, li);
+  };
+
+  li.append(checkbox, text, upBtn, downBtn, delBtn);
+  list.appendChild(li);
+  input.value = "";
+});
+</script>
+
+<hr><br>
+
+<h2>♟ Dynamic Chessboard Using JavaScript</h2>
+<div id="board"></div>
+
+<script>
+// Create chessboard using loops
+const board = document.getElementById("board");
+
+for (let row = 0; row < 8; row++) {
+  for (let col = 0; col < 8; col++) {
+    const cell = document.createElement("div");
+    cell.className = "box";
+    cell.style.background = (row + col) % 2 === 0 ? "#fff" : "#000";
+    board.appendChild(cell);
+  }
+}
+</script>
+
+</body>
+</html>
