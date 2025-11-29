@@ -1,0 +1,25 @@
+header{
+    display: flex;
+    flex-direction: row;
+   justify-content: space-between;
+   margin: 20px;
+
+}
+body{
+    border: 2px solid black;
+    border-radius: 20px;
+
+}
+.image{
+    border-radius: 50%;
+}
+.subHeadings{
+    color: rgb(54, 54, 220);
+    margin: 5px;
+}
+main{
+    margin: 20px;
+}
+i{
+    margin: 3px;
+}
