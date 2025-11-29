@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Basics Practice</title>
+</head>
+<body>
+
+  <script>
+    // 12. Ask user for name and welcome them
+    const name = prompt("Enter your name:", "");
+    if (name !== null && name !== "") {
+      alert("Welcome, " + name + "!");
+      document.write("<h2>Hello, " + name + "! Welcome to our site.</h2>");
+    } else {
+      alert("No name entered!");
+      document.write("<h2>Hello, Guest!</h2>");
+    }
+
+    // 13. Age eligibility checker (if-else + ternary)
+    const ageStr = prompt("Enter your age:", "");
+    const age = parseInt(ageStr, 10);
+    if (!isNaN(age)) {
+      // using if-else
+      if (age >= 18) {
+        alert("You are eligible (if-else).");
+      } else {
+        alert("You are NOT eligible (if-else).");
+      }
+      // using ternary
+      const msg = (age >= 18) ? "Eligible (ternary)" : "Not eligible (ternary)";
+      console.log(msg);
+    } else {
+      alert("Invalid age input!");
+    }
+
+    // 14. Array methods: map, filter, reduce, forEach — some simple examples
+    const nums = [1, 2, 3, 4, 5, 6];
+
+    // map — double each number
+    const doubled = nums.map(n => n * 2);
+    console.log("Doubled:", doubled);
+
+    // filter — only even numbers
+    const evens = nums.filter(n => n % 2 === 0);
+    console.log("Evens:", evens);
+
+    // reduce — sum of all numbers
+    const sum = nums.reduce((acc, cur) => acc + cur, 0);
+    console.log("Sum:", sum);
+
+    // forEach — print each number
+    nums.forEach((n, idx) => {
+      console.log(`Index ${idx}:`, n);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #taskInput {
+      padding: 8px;
+      width: 70%;
+      font-size: 16px;
+    }
+    #addButton {
+      padding: 8px 12px;
+      font-size: 16px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #f4f4f4;
+      margin: 8px 0;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    button.delete-btn {
+      background: #e74c3c;
+      border: none;
+      color: white;
+      padding: 5px 8px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My To-Do List</h1>
+
+  <input type="text" id="taskInput" placeholder="Enter a task" />
+  <button id="addButton">Add</button>
+
+  <ul id="todoList">
+    <!-- tasks go here -->
+  </ul>
+
+  <script>
+    const taskInput = document.getElementById('taskInput');
+    const addButton = document.getElementById('addButton');
+    const todoList = document.getElementById('todoList');
+
+    addButton.addEventListener('click', function() {
+      const taskText = taskInput.value.trim();
+      if (taskText === "") {
+        alert("Please enter a task.");
+        return;
+      }
+
+      // create list item
+      const li = document.createElement('li');
+
+      const span = document.createElement('span');
+      span.textContent = taskText;
+
+      const delBtn = document.createElement('button');
+      delBtn.textContent = 'Delete';
+      delBtn.className = 'delete-btn';
+
+      // attach delete functionality
+      delBtn.addEventListener('click', function() {
+        todoList.removeChild(li);
+      });
+
+      li.appendChild(span);
+      li.appendChild(delBtn);
+      todoList.appendChild(li);
+
+      taskInput.value = "";
+      taskInput.focus();
+    });
+  </script>
+</body>
+</html>
